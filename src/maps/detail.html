@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <script src="//api.its-mo.com/v3/loader?key=JSZ9ea6d26ac8a7|VbFeP&api=zdcmap.js,control.js,detail.js&enc=UTF8&force=1" type="text/javascript"></script>
+  <script type="text/javascript">
+    /* 東京 */
+    var map,
+      lat = 35.6778614, lon = 139.7703167;
+
+    function loadMap() {
+      map = new ZDC.Map(
+        document.getElementById('ZMap'),
+        {
+          latlon: new ZDC.LatLon(lat, lon),
+          zoomRange: [18, 19],
+          mapType: ZDC.MAPTYPE_COLOR,
+          zoom: 1
+        }
+      );
+
+      var detail = new ZDC.Detail();
+      map.addWidget(detail);
+
+      var normalWidget = new ZDC.Control(
+        {
+          pos: {
+            top: 10,
+            left: 10
+          },
+          type: ZDC.CTRL_TYPE_NORMAL
+        }
+      );
+
+      map.addWidget(normalWidget);
+    }
+  </script>
+</head>
+
+<body onload="loadMap();">
+<div id="ZMap" style="top:0; right: 0; bottom: 0; left:0; position:absolute;"></div>
+</body>
+</html>
