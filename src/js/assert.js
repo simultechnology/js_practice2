@@ -1,8 +1,6 @@
 
 import '../css/index.css';
 
-var index = 0;
-
 function assert(value, desc) {
   const li = document.createElement('li');
   li.className = value ? 'pass' : 'fail';

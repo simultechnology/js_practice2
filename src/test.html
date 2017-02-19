@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<h1>This is test page!</h1>
+<button id="test">Click Me!</button>
+<script>
+  assert(this === window, "this === window");
+  const button = {
+    clicked: false,
+    click: () => {
+      this.clicked = true;
+      assert(button.clicked, "The button has been clicked");
+      assert(this === window, "In arrow function this === window");
+      assert(window.clicked, "clicked is stored in window");
+    }
+  };
+  let elem = document.getElementById('test');
+  elem.addEventListener('click', button.click);
+
+  const button2 = new Button();
+  function Button() {
+    this.clicked = false;
+    this.click = () => {
+      this.clicked = true;
+      assert(button2.clicked, "The button2 has been clicked");
+    };
+  }
+  elem.addEventListener('click', button2.click);
+
+  function getResultsArea() {
+    let results = document.getElementById('results');
+    if (results) {
+      return results;
+    }
+    let ul = document.createElement('ul');
+    ul.setAttribute('id', 'results');
+    document.body.appendChild(ul);
+    return ul;
+  };
+
+  function assert(value, desc) {
+    const li = document.createElement('li');
+    li.className = value ? 'pass' : 'fail';
+    li.appendChild(document.createTextNode(desc));
+    let results = getResultsArea();
+    results.appendChild(li);
+  }
+
+</script>
+</body>
+</html>
