@@ -23,8 +23,14 @@ const mySort = (arr) => {
   return arr.sort((value1, value2) => value1 - value2);
 };
 
+const multiMax = (first, ...remainingNumbers) => {
+  const sorted = remainingNumbers.sort((a, b) => b - a);
+  return first * sorted[0];
+};
+
 // export { isPrime }
 module.exports = {
   isPrime: isPrime,
-  mySort: mySort
+  mySort: mySort,
+  multiMax: multiMax
 };

@@ -3,15 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    test: './src/test.js'
   // entry: {
   //   javascript: "./index.js",
   //   html: ["./index.html", "./2-1.html", "./maps/detail.html"]
-  // },
+  },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
 
   module: {
@@ -36,6 +38,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({template: './src/index.html'}),
+    new HtmlWebpackPlugin({template: './src/func.html', filename: 'func.html'}),
+    new HtmlWebpackPlugin({template: './src/2-1.html', filename: '2-1.html'}),
+    new HtmlWebpackPlugin({template: './src/test.html', filename: 'test.html'}),
     new ExtractTextPlugin('styles.css')
   ]
 };
