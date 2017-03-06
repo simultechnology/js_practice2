@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     index: './src/index.js',
     func: './src/func.js',
+    closure: './src/closure.js',
     test: './src/test.js',
   // entry: {
   //   javascript: "./index.js",
@@ -38,11 +39,14 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html', chunks:[] }),
     new HtmlWebpackPlugin({ template: './src/func.html', filename: 'func.html', chunks:['func'] }),
     new HtmlWebpackPlugin({ template: './src/2-1.html', filename: '2-1.html', chunks:[] }),
+    new HtmlWebpackPlugin({ template: './src/closure.html', filename: 'closure.html', chunks:['closure'] }),
     new HtmlWebpackPlugin({ template: './src/test.html', filename: 'test.html', chunks:['test'] }),
     new HtmlWebpackPlugin({ template: './src/maps/detail.html', filename: 'maps/detail.html', chunks:[] }),
     new ExtractTextPlugin('css/styles.css')
-  ]
+  ],
+  devServer: {
+    contentBase: path.resolve(__dirname, './dist'),
+  },
 };
